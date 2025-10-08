@@ -1,17 +1,10 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
-type MailRequest = {
-  name: string;
-  email: string;
-  phone: string;
-  type: string;
-  message: string;
-};
-
 export async function POST(req: Request) {
   try {
-    const body: MailRequest = await req.json();
+    const body = await req.json();
+    const { name, email, phone, type, message } = body;
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -24,21 +17,22 @@ export async function POST(req: Request) {
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: process.env.EMAIL_USER,
-      subject: `Nuwe afspraak van ${body.name}`,
+      subject: `Nuwe Afspraak: ${type}`,
       text: `
-Naam: ${body.name}
-E-pos: ${body.email}
-Selfoon: ${body.phone}
-Tipe: ${body.type}
-
-Boodskap:
-${body.message}
+Naam: ${name}
+Email: ${email}
+Telefoon: ${phone}
+Boodskap: ${message}
       `,
     });
 
     return NextResponse.json({ success: true });
-  } catch (error) {
-    console.error("Send mail error:", error);
-    return NextResponse.json({ success: false, error: "Email failed" }, { status: 500 });
+  } catch (err) {
+    console.error("Mailer error:", err);
+    return NextResponse.json({ success: false, error: "Email kon nie gestuur word nie" }, { status: 500 });
   }
+}
+
+export function GET() {
+  return NextResponse.json({ message: "Method not allowed" }, { status: 405 });
 }
