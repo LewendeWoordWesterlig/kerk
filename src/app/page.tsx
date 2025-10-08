@@ -1,6 +1,6 @@
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import ServiceTimes from "../components/ServiceTimes";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import ServiceTimes from "@/components/ServiceTimes";
 
 export default function Home() {
   return (
@@ -15,9 +15,8 @@ export default function Home() {
           style={{ backgroundImage: "url('/hero.jpg')" }}
         >
           <h1 className="hero-title text-5xl font-bold">
-         Welkom by Lewende Woord Westerlig 🙌
-         </h1>
-
+            Welkom by Lewende Woord Westerlig 🙌
+          </h1>
         </div>
 
         {/* Intro + Service Times */}
