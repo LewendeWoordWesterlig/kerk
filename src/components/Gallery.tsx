@@ -51,7 +51,7 @@ export default function Gallery() {
   return (
     <section className="mt-16 bg-gradient-to-r from-blue-50 to-blue-100 py-12 px-6 rounded-2xl shadow-lg">
       <h2 className="text-3xl font-extrabold text-blue-900 mb-8 text-center tracking-wide">
-        Gemeente Moments
+    ONS GEMEENTE
       </h2>
 
       <div

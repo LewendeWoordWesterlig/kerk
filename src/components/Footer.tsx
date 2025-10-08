@@ -28,12 +28,7 @@ export default function Footer() {
             onClick={() => setActiveModal("counseling")}
             className="hover:underline"
           >
-            Berading
-          </button>
-          <button
-            onClick={() => setActiveModal("courses")}
-            className="hover:underline"
-          >
+         
             Kursusse
           </button>
           <button
@@ -46,9 +41,9 @@ export default function Footer() {
 
         {/* Contact Info */}
         <div className="text-center text-sm space-y-1">
-          <p>Email: info@lewende-woord.co.za</p>
-          <p>Tel: +27 12 345 6789</p>
-          <p>Adres: 123 Kerkstraat, Westerlig</p>
+          <p>Email: admin@westerlig.com</p>
+          <p>Tel: 082 929 9378</p>
+          <p>Adres: 631 Niemandt str, Andeon AH, Pretoria</p>
         </div>
 
         {/* Copyright */}
@@ -56,19 +51,7 @@ export default function Footer() {
           © {new Date().getFullYear()} Lewende Woord Westerlig. Alle regte voorbehou.
         </p>
       </div>
-
-      {/* Counseling Modal */}
-      <Modal
-        isOpen={activeModal === "counseling"}
-        onClose={() => setActiveModal(null)}
-      >
-        <h1 className="text-2xl font-bold mb-4">Boek Berading 🕊️</h1>
-        <p className="text-gray-600">
-          Binnekort sal jy hier ’n afspraak kan maak vir berading.
-        </p>
-      </Modal>
-
-      {/* Courses Modal */}
+       {/* Courses Modal */}
       <Modal
         isOpen={activeModal === "courses"}
         onClose={() => setActiveModal(null)}
