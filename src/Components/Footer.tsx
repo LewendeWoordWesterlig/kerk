@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import Modal from "./Modal";
+import Modal from "@/components/Modal";
 
 export default function Footer() {
   const [activeModal, setActiveModal] = useState<string | null>(null);
