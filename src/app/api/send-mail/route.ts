@@ -1,40 +1,42 @@
-import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
     const { name, email, phone, type, message } = await req.json();
 
-    // transporter setup
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
+        user: process.env.EMAIL_USER, // admin@westerlig.com
+        pass: process.env.EMAIL_PASS, // App Password from Google
       },
     });
 
-    // email body now includes phone 📱
     await transporter.sendMail({
-      from: process.env.EMAIL_USER,
+      from: `"Kerk Web" <${process.env.EMAIL_USER}>`,
       to: "admin@westerlig.com",
       subject: `Nuwe afspraak: ${type}`,
       text: `
-Nuwe afspraak versoek 🚨
-
 Naam: ${name}
 E-pos: ${email}
-Selfoon: ${phone || "Nie voorsien nie"}
+Telefoon: ${phone}
 Tipe: ${type}
-
-Boodskap:
-${message}
+Boodskap: ${message}
+      `,
+      html: `
+        <h2>Nuwe afspraak</h2>
+        <p><strong>Naam:</strong> ${name}</p>
+        <p><strong>E-pos:</strong> ${email}</p>
+        <p><strong>Telefoon:</strong> ${phone}</p>
+        <p><strong>Tipe:</strong> ${type}</p>
+        <p><strong>Boodskap:</strong> ${message}</p>
       `,
     });
 
     return NextResponse.json({ success: true });
-  } catch (error: any) {
-    console.error("Mail error:", error);
-    return NextResponse.json({ success: false, error });
+  } catch (err: any) {
+    console.error("Email error:", err);
+    return NextResponse.json({ success: false, error: err.message }, { status: 500 });
   }
 }
