@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import Modal from "./Modal";
-import AfspraakForm from "./AfspraakForm";
+import Modal from "@/components/Modal";
+import AfspraakForm from "@/components/AfspraakForm";
 
 export default function Navbar() {
   const [activeModal, setActiveModal] = useState<string | null>(null);
