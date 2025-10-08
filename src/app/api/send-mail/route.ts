@@ -1,42 +1,38 @@
-import nodemailer from "nodemailer";
 import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 
 export async function POST(req: Request) {
   try {
     const { name, email, phone, type, message } = await req.json();
 
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
       auth: {
-        user: process.env.EMAIL_USER, // admin@westerlig.com
-        pass: process.env.EMAIL_PASS, // App Password from Google
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
     });
 
-    await transporter.sendMail({
-      from: `"Kerk Web" <${process.env.EMAIL_USER}>`,
-      to: "admin@westerlig.com",
-      subject: `Nuwe afspraak: ${type}`,
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_USER,
+      subject: `Nuwe Afspraak van ${name}`,
       text: `
-Naam: ${name}
-E-pos: ${email}
-Telefoon: ${phone}
-Tipe: ${type}
-Boodskap: ${message}
+        Naam: ${name}
+        E-pos: ${email}
+        Selfoon: ${phone}
+        Tipe: ${type}
+        Boodskap: ${message}
       `,
-      html: `
-        <h2>Nuwe afspraak</h2>
-        <p><strong>Naam:</strong> ${name}</p>
-        <p><strong>E-pos:</strong> ${email}</p>
-        <p><strong>Telefoon:</strong> ${phone}</p>
-        <p><strong>Tipe:</strong> ${type}</p>
-        <p><strong>Boodskap:</strong> ${message}</p>
-      `,
-    });
+    };
+
+    await transporter.sendMail(mailOptions);
 
     return NextResponse.json({ success: true });
-  } catch (err: any) {
-    console.error("Email error:", err);
-    return NextResponse.json({ success: false, error: err.message }, { status: 500 });
+  } catch (err: unknown) {
+    console.error("Mail error:", err);
+    return NextResponse.json({ success: false, error: String(err) });
   }
 }

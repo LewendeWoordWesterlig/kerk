@@ -1,7 +1,5 @@
-// test change
 "use client";
 
-"use client";
 import { useState } from "react";
 import Image from "next/image";
 import Modal from "@/components/Modal";
@@ -76,9 +74,15 @@ export default function Navbar() {
           Stuur vir ons ’n boodskap of besoek ons tydens diensure.
         </p>
         <div className="space-y-2">
-          <p><strong>Email:</strong> info@lewende-woord.co.za</p>
-          <p><strong>Tel:</strong> +27 12 345 6789</p>
-          <p><strong>Adres:</strong> 123 Kerkstraat, Westerlig</p>
+          <p>
+            <strong>Email:</strong> info@lewende-woord.co.za
+          </p>
+          <p>
+            <strong>Tel:</strong> +27 12 345 6789
+          </p>
+          <p>
+            <strong>Adres:</strong> 123 Kerkstraat, Westerlig
+          </p>
         </div>
       </Modal>
     </header>

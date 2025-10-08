@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 interface AfspraakFormProps {
-  onSuccess?: () => void; // ✅ optional callback from parent
+  onSuccess?: () => void;
 }
 
 export default function AfspraakForm({ onSuccess }: AfspraakFormProps) {
@@ -40,25 +40,25 @@ export default function AfspraakForm({ onSuccess }: AfspraakFormProps) {
       if (data.success) {
         setStatus("success");
 
-        // ✅ Close modal if parent provided onSuccess
-        if (onSuccess) {
-          setTimeout(() => onSuccess(), 1500);
-        } else {
-          // ✅ Else fallback: redirect home
-          setTimeout(() => {
+        // Close modal if onSuccess passed, otherwise redirect
+        setTimeout(() => {
+          if (onSuccess) {
+            onSuccess();
+          } else {
             router.push("/");
-          }, 3000);
-        }
+          }
+        }, 3000);
       } else {
         setStatus("error");
       }
-    } catch (err) {
+    } catch {
       setStatus("error");
     }
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      {/* all your inputs stay the same */}
       <input
         type="text"
         name="name"
@@ -107,9 +107,8 @@ export default function AfspraakForm({ onSuccess }: AfspraakFormProps) {
       <button
         type="submit"
         className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-        disabled={status === "loading"}
       >
-        {status === "loading" ? "Stuur..." : "Stuur"}
+        Stuur
       </button>
 
       {status === "loading" && (
@@ -117,11 +116,13 @@ export default function AfspraakForm({ onSuccess }: AfspraakFormProps) {
       )}
       {status === "success" && (
         <p className="text-green-600">
-          ✅ Jou afspraak is gestuur! {onSuccess ? "Die venster gaan toe..." : "Jy word terug gestuur na die tuisblad..."}
+          ✅ Jou afspraak is gestuur! Jy word terug gestuur na die tuisblad...
         </p>
       )}
       {status === "error" && (
-        <p className="text-red-600">❌ Kon nie stuur nie. Probeer asseblief weer.</p>
+        <p className="text-red-600">
+          ❌ Kon nie stuur nie. Probeer asseblief weer.
+        </p>
       )}
     </form>
   );
