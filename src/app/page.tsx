@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ServiceTimes from "@/components/ServiceTimes";
+import Gallery from "@/components/Gallery";
 
 export default function Home() {
   return (
@@ -33,6 +34,9 @@ export default function Home() {
           <ServiceTimes />
         </div>
       </section>
+
+      {/* Gallery Section */}
+      <Gallery />
 
       {/* Footer */}
       <Footer />
