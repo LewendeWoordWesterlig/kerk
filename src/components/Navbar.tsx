@@ -75,13 +75,13 @@ export default function Navbar() {
         </p>
         <div className="space-y-2">
           <p>
-            <strong>Email:</strong> info@lewende-woord.co.za
+            <strong>Email:</strong> admin@westerlig.com
           </p>
           <p>
-            <strong>Tel:</strong> +27 12 345 6789
+            <strong>Tel:</strong> 082 929 9378
           </p>
           <p>
-            <strong>Adres:</strong> 123 Kerkstraat, Westerlig
+            <strong>Adres:</strong> 631 Niemandt str, Andeo AH, Pretoria
           </p>
         </div>
       </Modal>

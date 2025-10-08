@@ -89,9 +89,9 @@ export default function Footer() {
           Stuur vir ons ’n boodskap of besoek ons tydens diensure.
         </p>
         <div className="space-y-2">
-          <p><strong>Email:</strong> info@lewende-woord.co.za</p>
-          <p><strong>Tel:</strong> +27 12 345 6789</p>
-          <p><strong>Adres:</strong> 123 Kerkstraat, Westerlig</p>
+          <p><strong>Email:</strong> admin@westerlig.com</p>
+          <p><strong>Tel:</strong> 082 929 9378</p>
+          <p><strong>Adres:</strong> 631 Niemandt Str, Andeon Ah, Pretoria</p>
         </div>
       </Modal>
     </footer>
