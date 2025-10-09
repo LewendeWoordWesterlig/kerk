@@ -5,7 +5,7 @@ import confetti from "canvas-confetti";
 import { motion } from "framer-motion";
 
 export default function BekeerlingeCounter() {
-  const souls = 427; // 👈 update this manually
+  const souls = 427; // 👈 update manually
   const [showCelebration, setShowCelebration] = useState(false);
   const [showFloating, setShowFloating] = useState(false);
 
@@ -40,12 +40,12 @@ export default function BekeerlingeCounter() {
       {showCelebration && (
         <motion.div
           initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1.5, opacity: 1 }}
+          animate={{ scale: 1.2, opacity: 1 }}
           exit={{ scale: 0, opacity: 0 }}
           transition={{ duration: 0.5 }}
-          className="fixed inset-0 z-50 flex items-center justify-center"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
         >
-          <div className="bg-yellow-400 text-blue-900 font-extrabold px-8 py-6 rounded-2xl shadow-2xl text-4xl border-4 border-white">
+          <div className="bg-yellow-400 text-blue-900 font-extrabold px-6 py-4 rounded-2xl shadow-2xl border-4 border-white text-2xl sm:text-3xl md:text-4xl text-center">
             🎉 BEKEERLINGE: {souls}
           </div>
         </motion.div>
@@ -54,7 +54,7 @@ export default function BekeerlingeCounter() {
       {/* Small Floating Counter */}
       {showFloating && (
         <div className="fixed bottom-4 right-4 left-4 md:left-auto md:right-6 z-50 flex justify-center md:justify-end">
-          <div className="bg-yellow-400 text-blue-900 font-extrabold px-3 py-2 rounded-lg shadow-md text-sm md:text-base border border-white">
+          <div className="bg-yellow-400 text-blue-900 font-extrabold px-3 py-2 rounded-lg shadow-md text-sm sm:text-base md:text-lg border border-white">
             🙌 BEKEERLINGE: {souls}
           </div>
         </div>
