@@ -8,7 +8,7 @@ export default function Footer() {
   const [activeModal, setActiveModal] = useState<string | null>(null);
 
   return (
-    <footer className="bg-blue-700 text-white p-6 mt-12">
+    <footer className="bg-[#0D3B66] text-white p-6 mt-12">
       <div className="flex flex-col items-center space-y-6">
         {/* Logo */}
         <Image
@@ -22,18 +22,17 @@ export default function Footer() {
         {/* Church name */}
         <h2 className="text-lg font-bold">Lewende Woord Westerlig</h2>
 
-        {/* Quick Links - responsive layout */}
+        {/* Quick Links */}
         <nav className="flex flex-col sm:flex-row sm:space-x-6 space-y-3 sm:space-y-0 text-center">
           <button
-            onClick={() => setActiveModal("counseling")}
-            className="hover:underline"
+            onClick={() => setActiveModal("courses")}
+            className="hover:text-[#FFD60A] transition-colors"
           >
-         
             Kursusse
           </button>
           <button
             onClick={() => setActiveModal("contact")}
-            className="hover:underline"
+            className="hover:text-[#FFD60A] transition-colors"
           >
             Kontak
           </button>
@@ -51,7 +50,8 @@ export default function Footer() {
           © {new Date().getFullYear()} Lewende Woord Westerlig. Alle regte voorbehou.
         </p>
       </div>
-       {/* Courses Modal */}
+
+      {/* Courses Modal */}
       <Modal
         isOpen={activeModal === "courses"}
         onClose={() => setActiveModal(null)}
