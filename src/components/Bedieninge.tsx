@@ -19,7 +19,7 @@ type Props = {
 export default function Bedieninge({ isOpen, onClose, onOpenModal }: Props) {
   const services = [
     { title: "Dienste", description: "Oggend 08:30 & Aand 17:00", icon: Church },
-    { title: "Woorskool", description: "Kom leer meer oor God se Woord", icon: BookOpen },
+    { title: "Woordskool", description: "Kom leer meer oor God se Woord", icon: BookOpen },
     { title: "Selgroepe", description: "Groepe vir Bybelstudie en ondersteuning", icon: Users },
     { title: "Woordreisigers", description: "Kom reis deur die woord elke Donderdag om 08:30 by kerk", icon: BookOpen },
     { title: "Uitreike", description: "Bedien in gemeenskap", icon: HeartHandshake },

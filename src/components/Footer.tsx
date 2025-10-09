@@ -28,7 +28,7 @@ export default function Footer() {
             onClick={() => setActiveModal("courses")}
             className="hover:text-[#FFD60A] transition-colors"
           >
-            Kursusse
+        
           </button>
           <button
             onClick={() => setActiveModal("contact")}

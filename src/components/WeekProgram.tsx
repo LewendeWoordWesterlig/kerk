@@ -9,7 +9,7 @@ type Props = {
 
 export default function WeekProgram({ isOpen, onClose }: Props) {
   const program = [
-    { day: "Maandag", time: "19:00", activity: "Woorskool" },
+    { day: "Maandag", time: "19:00", activity: "Woordskool" },
     { day: "Dinsdag", time: "-", activity: "Geen program" },
     { day: "Woensdag", time: "-", activity: "Selgroepe" },
     { day: "Donderdag", time: "18:30", activity: "Orkes Oefening" },
