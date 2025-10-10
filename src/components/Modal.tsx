@@ -1,5 +1,6 @@
 "use client";
 import { ReactNode, useEffect } from "react";
+import { X } from "lucide-react";
 
 export default function Modal({
   isOpen,
@@ -10,7 +11,7 @@ export default function Modal({
   onClose: () => void;
   children: ReactNode;
 }) {
-  // Close on Escape key
+  // Close with ESC key
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -23,21 +24,55 @@ export default function Modal({
 
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 animate-fadeIn"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-md transition-opacity animate-fadeIn"
       onClick={onClose}
     >
       <div
-        className="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 rounded-lg shadow-lg p-6 max-w-lg w-full relative animate-scaleIn"
-        onClick={(e) => e.stopPropagation()} // prevent close when clicking inside
+        className="relative bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border border-white/20 dark:border-gray-700 rounded-2xl shadow-2xl p-6 max-w-lg w-[90%] text-gray-900 dark:text-gray-100 animate-popIn"
+        onClick={(e) => e.stopPropagation()} // prevent closing on inside click
       >
+        {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-2 right-2 text-gray-500 hover:text-gray-800 dark:hover:text-gray-300"
+          className="absolute top-3 right-3 p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition"
+          aria-label="Close modal"
         >
-          ✕
+          <X className="w-5 h-5 text-gray-600 dark:text-gray-300" />
         </button>
+
         {children}
       </div>
+
+      {/* Tailwind keyframes */}
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes popIn {
+          from {
+            transform: scale(0.95);
+            opacity: 0;
+          }
+          to {
+            transform: scale(1);
+            opacity: 1;
+          }
+        }
+
+        .animate-fadeIn {
+          animation: fadeIn 0.25s ease-out;
+        }
+
+        .animate-popIn {
+          animation: popIn 0.25s ease-out;
+        }
+      `}</style>
     </div>
   );
 }
