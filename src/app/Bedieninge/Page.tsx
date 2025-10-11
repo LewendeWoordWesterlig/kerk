@@ -78,13 +78,17 @@ export default function BedieningePage() {
 
       {/* Back to Top Button */}
       {showScrollTop && (
-        <button
+        <motion.button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="fixed bottom-6 right-6 bg-blue-900 text-white p-3 rounded-full shadow-lg hover:bg-blue-800 transition duration-300"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 50 }}
+          transition={{ duration: 0.3 }}
+          className="fixed bottom-24 right-6 bg-blue-900 text-white p-3 rounded-full shadow-lg hover:bg-blue-800 hover:shadow-blue-500/50 transition-all duration-300 animate-pulse-slow z-40"
           aria-label="Back to top"
         >
           <ArrowUp className="w-5 h-5" />
-        </button>
+        </motion.button>
       )}
     </div>
   );
