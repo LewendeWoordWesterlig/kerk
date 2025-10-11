@@ -36,7 +36,7 @@ export default function WeekProgram({ isOpen, onClose }: Props) {
           className="text-3xl font-extrabold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-indigo-500 flex items-center gap-3"
         >
           <CalendarDays className="w-7 h-7 text-blue-600" />
-          Weekprogram 📅
+          Weekprogram 
         </motion.h1>
 
         <div className="space-y-4">

@@ -5,7 +5,7 @@ import confetti from "canvas-confetti";
 import { motion } from "framer-motion";
 
 export default function BekeerlingeCounter() {
-  const souls = 427; // 👈 update manually
+  const souls = 432; // 👈 update manually
   const [showCelebration, setShowCelebration] = useState(false);
   const [showFloating, setShowFloating] = useState(false);
 
@@ -20,7 +20,7 @@ export default function BekeerlingeCounter() {
         setShowCelebration(false);
         setShowFloating(true);
       }, 3000);
-    }, 10000);
+    }, 5000);
 
     return () => clearTimeout(timer);
   }, []);

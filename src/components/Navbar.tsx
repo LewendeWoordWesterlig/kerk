@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { MapPin, Menu, X, Copy } from "lucide-react";
+import Link from "next/link";
+import { MapPin, Menu, X, Copy, Home } from "lucide-react";
 import Modal from "@/components/Modal";
 
 export default function Navbar({ onOpenModal }: { onOpenModal: (m: "week" | "services" | null) => void }) {
@@ -40,6 +41,13 @@ Verwysing: Tiendes / Offergawes
 
       {/* Desktop Navbar */}
       <nav className="hidden md:flex items-center space-x-8 text-lg font-semibold">
+        {/* Home Button */}
+        <Link href="/" className="relative group flex items-center space-x-1">
+          <Home className="w-5 h-5" />
+          <span>Tuis</span>
+          <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-yellow-400 transition-all duration-300 group-hover:w-full"></span>
+        </Link>
+
         <button onClick={() => onOpenModal("services")} className="relative group">
           Bedieninge
           <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-yellow-400 transition-all duration-300 group-hover:w-full"></span>
@@ -76,6 +84,10 @@ Verwysing: Tiendes / Offergawes
       {/* Mobile Dropdown */}
       {mobileOpen && (
         <div className="absolute top-16 left-0 w-full bg-gradient-to-b from-blue-900 to-blue-700 text-white shadow-lg flex flex-col items-center py-6 space-y-6 md:hidden z-40">
+          <Link href="/" onClick={() => setMobileOpen(false)} className="text-lg font-semibold hover:text-yellow-400 flex items-center space-x-2">
+            <Home className="w-5 h-5" />
+            <span>Tuis</span>
+          </Link>
           <button onClick={() => { onOpenModal("services"); setMobileOpen(false); }} className="text-lg font-semibold hover:text-yellow-400">Bedieninge</button>
           <button onClick={() => { setActiveModal("contact"); setMobileOpen(false); }} className="text-lg font-semibold hover:text-yellow-400">Kontak ons</button>
           <button onClick={() => { setActiveModal("gee"); setMobileOpen(false); }} className="text-lg font-semibold hover:text-yellow-400">SAAI</button>

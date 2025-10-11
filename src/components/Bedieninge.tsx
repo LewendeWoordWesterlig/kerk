@@ -9,6 +9,7 @@ import {
   Group,
   LifeBuoy,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 type Props = {
   isOpen: boolean;
@@ -17,20 +18,29 @@ type Props = {
 };
 
 export default function Bedieninge({ isOpen, onClose, onOpenModal }: Props) {
+  const router = useRouter();
+
   const services = [
     { title: "Dienste", description: "Oggend 08:30 & Aand 17:00", icon: Church },
-    { title: "Woordskool", description: "Kom leer meer oor God se Woord", icon: BookOpen },
-    { title: "Selgroepe", description: "Groepe vir Bybelstudie en ondersteuning", icon: Users },
-    { title: "Woordreisigers", description: "Kom reis deur die woord elke Donderdag om 08:30 by kerk", icon: BookOpen },
-    { title: "Uitreike", description: "Bedien in gemeenskap", icon: HeartHandshake },
-    { title: "Bidgroepe", description: "Gebedsbyeenkomste vir die gemeente", icon: Group },
+    { title: "Woordskool", description: "Kom leer meer oor God se Woord", icon: BookOpen, id: "woordskool" },
+    { title: "Selgroepe", description: "Groepe vir Bybelstudie en ondersteuning", icon: Users, id: "selgroepe" },
+    { title: "Woordreisigers", description: "Kom reis deur die woord elke Donderdag om 08:30 by kerk", icon: BookOpen, id: "woordreisigers" },
+    { title: "Uitreike", description: "Bedien in gemeenskap", icon: HeartHandshake, id: "uitreike" },
+    { title: "Bidgroepe", description: "Gebedsbyeenkomste vir die gemeente", icon: Group, id: "bidgroep" },
     {
       title: "Ondersteuning",
       description: "Persoonlike ondersteuning en begeleiding",
       icon: LifeBuoy,
+      id: "ondersteuning",
       action: { label: "Maak Afspraak", modal: "counseling" as const },
     },
   ];
+
+  const handleNavigate = (id?: string) => {
+    if (!id) return;
+    onClose();
+    router.push(`/bedieninge#${id}`);
+  };
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -48,7 +58,8 @@ export default function Bedieninge({ isOpen, onClose, onOpenModal }: Props) {
               return (
                 <div
                   key={i}
-                  className="bg-white border border-blue-100 rounded-xl p-6 shadow-md hover:shadow-lg hover:scale-[1.02] transition flex flex-col"
+                  onClick={() => handleNavigate(item.id)}
+                  className="bg-white border border-blue-100 rounded-xl p-6 shadow-md hover:shadow-lg hover:scale-[1.02] transition flex flex-col cursor-pointer"
                 >
                   {/* Icon + Title */}
                   <div className="flex items-center space-x-3 mb-3">
@@ -64,9 +75,10 @@ export default function Bedieninge({ isOpen, onClose, onOpenModal }: Props) {
                   {/* Action button */}
                   {item.action && (
                     <button
-                      onClick={() => {
-                        onClose(); // close Bedieninge
-                        onOpenModal(item.action.modal); // open Afspraak modal
+                      onClick={(e) => {
+                        e.stopPropagation(); // prevent triggering navigate
+                        onClose();
+                        onOpenModal(item.action.modal);
                       }}
                       className="mt-4 self-start bg-yellow-400 text-blue-900 font-semibold px-4 py-2 rounded-full shadow hover:bg-yellow-300 transition"
                     >
