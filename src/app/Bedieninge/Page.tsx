@@ -14,6 +14,7 @@ import OndersteuningSection from "@/components/bedieningecomp/OndersteuningSecti
 
 export default function BedieningePage() {
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [modal, setModal] = useState<"week" | "services" | null>(null);
 
   // Show button when scrolling down
   useEffect(() => {
@@ -27,7 +28,7 @@ export default function BedieningePage() {
   return (
     <div className="flex flex-col w-full scroll-smooth">
       {/* Navbar */}
-      <Navbar />
+      <Navbar onOpenModal={setModal} />
       
       {/* Hero Intro */}
       <section
