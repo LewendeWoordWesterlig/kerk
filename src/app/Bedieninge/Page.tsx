@@ -28,7 +28,7 @@ export default function BedieningePage() {
     <div className="flex flex-col w-full scroll-smooth">
       {/* Navbar */}
       <Navbar />
-
+      
       {/* Hero Intro */}
       <section
         id="hero"
