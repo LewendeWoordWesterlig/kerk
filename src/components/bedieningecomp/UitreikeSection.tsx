@@ -5,12 +5,12 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 const images = [
-  "/images/Uitreik/uirteik 1.jpg",
-  "/images/Uitreik/uitreike 2.jpg",
-  "/images/Uitreik/uitreike 3.jpg",
-  "/images/Uitreik/uitreike 4.jpg",
-  "/images/Uitreik/uitreike 5.jpg",
-  "/images/Uitreik/uitreike 6.jpg",
+  "/images/Uitreik/uirteik1.jpg",
+  "/images/Uitreik/uitreike2.jpg",
+  "/images/Uitreik/uitreike3.jpg",
+  "/images/Uitreik/uitreike4.jpg",
+  "/images/Uitreik/uitreike5.jpg",
+  "/images/Uitreik/uitreike6.jpg",
 ];
 
 export default function UitreikeSection() {
