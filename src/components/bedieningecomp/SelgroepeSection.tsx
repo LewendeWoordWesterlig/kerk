@@ -5,8 +5,8 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 const images = [
-  "/Images/Selgroep/Selgroepe 1.jpg",
-  "/Images/Selgroep/Selgroepe 2.jpg",
+  "/images/Selgroep/Selgroepe 1.jpg",
+  "/images/Selgroep/Selgroepe 2.jpg",
   
 ];
 

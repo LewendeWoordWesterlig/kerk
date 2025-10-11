@@ -5,10 +5,10 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 const images = [
-  "/images/woordreisigers/woord R 1.jpg",
-  "/images/woordreisigers/woord R 2.jpg",
-  "/images/woordreisigers/woord R 3.jpg",
-  "/images/woordreisigers/woord R 4.jpg",
+  "/images/Woordreisigers/woord R 1.jpg",
+  "/images/Woordreisigers/woord R 2.jpg",
+  "/images/Woordreisigers/woord R 3.jpg",
+  "/images/Woordreisigers/woord R 4.jpg",
 ];
 
 export default function WoordReisigersSection() {
