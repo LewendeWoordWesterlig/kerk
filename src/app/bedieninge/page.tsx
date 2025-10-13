@@ -41,7 +41,7 @@ export default function BedieningePage() {
           transition={{ duration: 0.8 }}
           className="max-w-3xl px-6"
         >
-          <h1 className="text-5xl font-extrabold mb-4 hero-title">Bedieninge 🙌</h1>
+          <h1 className="text-5xl font-extrabold mb-4 hero-title">Bedieninge</h1>
           <p className="text-lg text-blue-100">
             Ontdek die verskillende bedieninge van Lewende Woord Westerlig.
             Elke bediening dra by tot die groei en ondersteuning van ons gemeente.

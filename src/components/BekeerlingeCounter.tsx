@@ -46,7 +46,7 @@ export default function BekeerlingeCounter() {
           className="fixed inset-0 z-50 flex items-center justify-center p-4"
         >
           <div className="bg-yellow-400 text-blue-900 font-extrabold px-6 py-4 rounded-2xl shadow-2xl border-4 border-white text-2xl sm:text-3xl md:text-4xl text-center">
-            🎉 BEKEERLINGE: {souls}
+            BEKEERLINGE: {souls}
           </div>
         </motion.div>
       )}
@@ -55,7 +55,7 @@ export default function BekeerlingeCounter() {
       {showFloating && (
         <div className="fixed bottom-4 right-4 left-4 md:left-auto md:right-6 z-50 flex justify-center md:justify-end">
           <div className="bg-yellow-400 text-blue-900 font-extrabold px-3 py-2 rounded-lg shadow-md text-sm sm:text-base md:text-lg border border-white">
-            🙌 BEKEERLINGE: {souls}
+          BEKEERLINGE: {souls}
           </div>
         </div>
       )}

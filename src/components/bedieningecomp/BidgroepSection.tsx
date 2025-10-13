@@ -14,7 +14,7 @@ export default function BidgroepSection() {
         />
       </div>
       <div className="md:w-1/2 text-center md:text-left space-y-4">
-        <h2 className="text-3xl font-extrabold text-blue-900">Bidgroepe 🙏</h2>
+        <h2 className="text-3xl font-extrabold text-blue-900">Bidgroepe</h2>
         <p className="text-gray-700 leading-relaxed">
           Saam bid ons vir ons gemeente, stad en nasie — kragtige gebed verander dinge!
         </p>

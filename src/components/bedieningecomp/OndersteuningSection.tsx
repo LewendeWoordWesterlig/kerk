@@ -23,7 +23,7 @@ export default function OndersteuningSection() {
 
       {/* Text + Button */}
       <div className="md:w-1/2 text-center md:text-left space-y-4">
-        <h2 className="text-3xl font-extrabold text-blue-900">Ondersteuning ❤️</h2>
+        <h2 className="text-3xl font-extrabold text-blue-900">Ondersteuning</h2>
         <p className="text-gray-700 leading-relaxed">
           Ons is hier om te help — of jy begeleiding, gebed of raad nodig het.
           Ons ondersteuningspan is gereed om saam met jou te bid en te gesels.

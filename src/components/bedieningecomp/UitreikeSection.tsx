@@ -34,7 +34,7 @@ export default function UitreikeSection() {
         viewport={{ once: true }}
         className="md:w-1/2 mb-10 md:mb-0 md:pr-12 text-center md:text-left"
       >
-        <h2 className="text-3xl font-bold text-blue-800 mb-4">Uitreike 🌍</h2>
+        <h2 className="text-3xl font-bold text-blue-800 mb-4">Uitreike</h2>
         <p className="text-lg text-gray-700 mb-6 leading-relaxed">
           Ons Uitreike-bediening is die hartklop van ons gemeente —
           waar ons die liefde van Christus uitdra na die gemeenskap en verder.
