@@ -97,11 +97,10 @@ export default function BidgroepSection() {
               📞 Brits Van Zyl
             </h3>
             <p className="text-gray-700 mb-4">
-              Kontak ons Bedieningsleier vir meer besonderhede oor Bidgroepe.
+              Kontak ons Bedieningsleier vir meer inligting oor Bidgroepe.
             </p>
             <div className="space-y-2">
               <p className="font-semibold text-blue-900">📱 061 511 2292</p>
-              <p className="text-gray-700">✉️ admin@westerlig.com</p>
             </div>
 
             {/* Buttons */}
@@ -119,7 +118,7 @@ export default function BidgroepSection() {
                 rel="noopener noreferrer"
                 className="inline-block bg-green-500 text-white font-semibold px-6 py-2 rounded-full shadow hover:bg-green-600 transition"
               >
-                WhatsApp Nou
+                Stuur 'n Whatsapp
               </a>
             </div>
           </div>
