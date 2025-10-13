@@ -157,13 +157,13 @@ export default function WoordReisigersSection() {
                 Vir enige navrae of meer inligting oor Woord Reisigers.
               </p>
               <a
-                href="tel:+27821234567"
+                href="tel:+2734133384"
                 className="block text-lg font-semibold text-blue-700 hover:underline mb-3"
               >
-                +27 82 123 4567
+                073 413 3384
               </a>
               <p className="text-sm text-gray-600">
-                Beskikbaar: <strong>Woensdae om 18:30</strong>
+                Beskikbaar: <strong>Donderdae om 08:30</strong>
               </p>
               <button
                 onClick={() => setShowContact(false)}

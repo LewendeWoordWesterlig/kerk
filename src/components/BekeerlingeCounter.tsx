@@ -45,8 +45,13 @@ export default function BekeerlingeCounter() {
           transition={{ duration: 0.5 }}
           className="fixed inset-0 z-50 flex items-center justify-center p-4"
         >
-          <div className="bg-yellow-400 text-blue-900 font-extrabold px-6 py-4 rounded-2xl shadow-2xl border-4 border-white text-2xl sm:text-3xl md:text-4xl text-center">
-            BEKEERLINGE: {souls}
+          <div className="relative bg-yellow-400 text-blue-900 font-extrabold px-6 py-4 rounded-2xl shadow-2xl border-4 border-white text-2xl sm:text-3xl md:text-4xl text-center overflow-hidden">
+            {/* Watermark */}
+            <span className="absolute inset-0 flex items-center justify-center text-blue-900/10 font-extrabold text-[70px] sm:text-[100px] md:text-[130px] leading-none select-none scale-90">
+              2025
+            </span>
+            {/* Foreground Text */}
+            <span className="relative z-10">BEKEERLINGE: {souls}</span>
           </div>
         </motion.div>
       )}
@@ -54,8 +59,12 @@ export default function BekeerlingeCounter() {
       {/* Small Floating Counter */}
       {showFloating && (
         <div className="fixed bottom-4 right-4 left-4 md:left-auto md:right-6 z-50 flex justify-center md:justify-end">
-          <div className="bg-yellow-400 text-blue-900 font-extrabold px-3 py-2 rounded-lg shadow-md text-sm sm:text-base md:text-lg border border-white">
-          BEKEERLINGE: {souls}
+          <div className="relative bg-yellow-400 text-blue-900 font-extrabold px-3 py-2 rounded-lg shadow-md text-sm sm:text-base md:text-lg border border-white overflow-hidden">
+            {/* Watermark for small block */}
+            <span className="absolute inset-0 flex items-center justify-center text-blue-900/10 font-extrabold text-[40px] sm:text-[60px] md:text-[80px] leading-none select-none scale-90">
+              2025
+            </span>
+            <span className="relative z-10">BEKEERLINGE: {souls}</span>
           </div>
         </div>
       )}

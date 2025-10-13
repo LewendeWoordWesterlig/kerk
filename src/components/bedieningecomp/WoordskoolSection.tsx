@@ -40,7 +40,7 @@ export default function WoordskoolSection() {
             onClick={() => setShowForm(true)}
             className="bg-yellow-400 text-blue-900 font-semibold px-6 py-2 rounded-full shadow hover:bg-yellow-300 transition"
           >
-            Kontak Bedieningsleier
+            Registreer
           </button>
         </div>
       </div>
