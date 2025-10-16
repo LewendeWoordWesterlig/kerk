@@ -45,19 +45,26 @@ Verwysing: Tiendes / Offergawes
 
       {/* Desktop Navbar */}
       <nav className="hidden md:flex items-center space-x-8 text-lg font-semibold">
-        {/* Home Button */}
         <Link href="/" className="relative group flex items-center space-x-1">
           <Home className="w-5 h-5" />
           <span>Tuis</span>
           <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-yellow-400 transition-all duration-300 group-hover:w-full"></span>
         </Link>
 
-        {/* Bedieninge now links to /bedieninge */}
         <Link
           href="/bedieninge"
           className="relative group flex items-center space-x-1"
         >
           <span>Bedieninge</span>
+          <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-yellow-400 transition-all duration-300 group-hover:w-full"></span>
+        </Link>
+
+        {/* Selgroepe link added */}
+        <Link
+          href="/selgroepe"
+          className="relative group flex items-center space-x-1"
+        >
+          <span>Selgroepe</span>
           <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-yellow-400 transition-all duration-300 group-hover:w-full"></span>
         </Link>
 
@@ -107,13 +114,21 @@ Verwysing: Tiendes / Offergawes
             <span>Tuis</span>
           </Link>
 
-          {/* Mobile Bedieninge link */}
           <Link
             href="/bedieninge"
             onClick={() => setMobileOpen(false)}
             className="text-lg font-semibold hover:text-yellow-400"
           >
             Bedieninge
+          </Link>
+
+          {/* Selgroepe mobile link */}
+          <Link
+            href="/selgroepe"
+            onClick={() => setMobileOpen(false)}
+            className="text-lg font-semibold hover:text-yellow-400"
+          >
+            Selgroepe
           </Link>
 
           <button
