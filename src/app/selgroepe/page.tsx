@@ -56,10 +56,10 @@ const groups: Group[] = [
   },
   {
     id: 5,
-    name: "Suiderberg - Mountain View",
-    locationName: "Suiderberg",
+    name: "Tuine",
+    locationName: "Tuine",
     mapUrl:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d380.123456789!2d28.1499507!3d-25.6999643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e95a1234567890%3A0xabcdef1234567890!2sProklamasie%20Heuwel%2C%20Pretoria%2C%20Gauteng%2C%20South%20Africa!5e0!3m2!1sen!2sza!4v0000000000",
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d380.123456789!2d28.1538615!3d-25.7247896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e95a1234567890%3A0xabcdef1234567890!2sProklamasie%20Heuwel%2C%20Pretoria%2C%20Gauteng%2C%20South%20Africa!5e0!3m2!1sen!2sza!4v000000000",
     imageUrl: "/images/Selgroep/Suiderberg - Mountain View.jpg",
     whatsappNumber: "27825686354",
     membersList: ["Geo & Madelein Fowlds"],
@@ -70,9 +70,9 @@ const groups: Group[] = [
     locationName: "Tuine",
     mapUrl:
       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d380.123456789!2d28.1538615!3d-25.7247896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e95a1234567890%3A0xabcdef1234567890!2sProklamasie%20Heuwel%2C%20Pretoria%2C%20Gauteng%2C%20South%20Africa!5e0!3m2!1sen!2sza!4v0000000000",
-    imageUrl: "/images/Selgroep/Tuine.jpg",
-    whatsappNumber: "27829908159",
-    membersList: ["Herman & Althea Pretorious"],
+    imageUrl: "/images/Selgroep/Brits sel.jpg",
+    whatsappNumber: "27615112292",
+    membersList: ["Brits & mMadelein Van Zyl"],
   },
 ];
 
