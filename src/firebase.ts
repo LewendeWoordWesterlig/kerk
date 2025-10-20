@@ -1,6 +1,7 @@
 // src/firebase.ts
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
+import { getStorage } from "firebase/storage"; // ✅ add this
 
 // Your Firebase config
 const firebaseConfig = {
@@ -16,5 +17,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// **Create and export the database instance**
+// Export database and storage
 export const db = getDatabase(app);
+export const storage = getStorage(app); // ✅ add this
