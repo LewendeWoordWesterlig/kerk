@@ -82,6 +82,8 @@ export default function BandManagerPage() {
   const [adminPassword, setAdminPassword] = useState("");
   const [notice, setNotice] = useState<string | null>(null);
   const [newSong, setNewSong] = useState<Song>({ title: "", key: "", capo: undefined, notes: "" });
+  const [newMemberName, setNewMemberName] = useState("");
+  const [newMemberRoles, setNewMemberRoles] = useState("");
 
   // ---------- Firebase listeners ----------
   useEffect(() => {
@@ -151,6 +153,18 @@ export default function BandManagerPage() {
     setTimeout(() => setNotice(null), 2000);
   };
 
+  const addMember = async () => {
+    if (!newMemberName) return;
+    const id = Date.now();
+    const rolesArray = newMemberRoles.split(",").map(r => r.trim()).filter(r => r);
+    const newM: Member = { id, name: newMemberName, roles: rolesArray };
+    await set(ref(db, `members/${id}`), newM);
+    setNewMemberName("");
+    setNewMemberRoles("");
+    setNotice(`Member "${newMemberName}" added`);
+    setTimeout(() => setNotice(null), 2000);
+  };
+
   // ---------- Global song management ----------
   const addGlobalSong = async () => {
     if (!newSong.title || !newSong.key) return;
@@ -184,7 +198,6 @@ export default function BandManagerPage() {
       if (y > 720) { doc.addPage(); y = 40; }
     });
 
-    // Songs at bottom
     if (schedule.songs?.length) {
       y += 10;
       doc.setFontSize(12);
@@ -246,6 +259,31 @@ export default function BandManagerPage() {
           {/* Members */}
           <section className="bg-white p-4 rounded shadow">
             <h2 className="font-semibold mb-2">Members</h2>
+
+            {isAdmin && (
+              <div className="mb-3 border p-2 rounded bg-gray-50">
+                <div className="font-medium text-sm mb-1">Add Member</div>
+                <input
+                  placeholder="Name"
+                  className="border p-1 w-full mb-1"
+                  value={newMemberName}
+                  onChange={(e) => setNewMemberName(e.target.value)}
+                />
+                <input
+                  placeholder="Roles (comma separated)"
+                  className="border p-1 w-full mb-1"
+                  value={newMemberRoles}
+                  onChange={(e) => setNewMemberRoles(e.target.value)}
+                />
+                <button
+                  onClick={addMember}
+                  className="px-3 py-1 bg-green-500 text-white rounded text-sm"
+                >
+                  Add
+                </button>
+              </div>
+            )}
+
             <ul className="max-h-60 overflow-auto space-y-2 mb-3">
               {members.map(m => (
                 <li key={m.id} className="flex items-center justify-between border rounded p-2">
