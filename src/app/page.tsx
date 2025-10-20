@@ -9,6 +9,7 @@ import WeekProgram from "@/components/WeekProgram";
 import Bedieninge from "@/components/Bedieninge";
 import AfspraakForm from "@/components/AfspraakForm";
 import Modal from "@/components/Modal";
+import YouTubeSection from "@/components/YoutubeSection"; // 👈 added import
 
 export default function Home() {
   const [openModal, setOpenModal] = useState<"week" | "services" | "counseling" | null>(null);
@@ -65,14 +66,16 @@ export default function Home() {
         </section>
       </div>
 
+      {/* 👇 New YouTube Section */}
+      <section className="mt-16">
+        <YouTubeSection />
+      </section>
+
       {/* Footer */}
       <Footer />
 
       {/* Week Program Modal */}
-      <WeekProgram
-        isOpen={openModal === "week"}
-        onClose={() => setOpenModal(null)}
-      />
+      <WeekProgram isOpen={openModal === "week"} onClose={() => setOpenModal(null)} />
 
       {/* Bedieninge Modal */}
       <Bedieninge
@@ -82,10 +85,7 @@ export default function Home() {
       />
 
       {/* Afspraak Modal */}
-      <Modal
-        isOpen={openModal === "counseling"}
-        onClose={() => setOpenModal(null)}
-      >
+      <Modal isOpen={openModal === "counseling"} onClose={() => setOpenModal(null)}>
         <h1 className="text-2xl font-bold mb-4">Maak ’n Afspraak 🕊️</h1>
         <AfspraakForm onSuccess={() => setOpenModal(null)} />
       </Modal>
