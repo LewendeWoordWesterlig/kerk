@@ -100,7 +100,7 @@ export default function UitreikeSection() {
 
             <div className="text-gray-700 space-y-4 text-justify leading-relaxed">
               <p>
-                The Way Street Church is ’n unieke bediening wat saamkom om God se Woord en liefde na die mense te bring presies nét waar hulle is — óp die strate, ín die gemeenskap, en binee ín harte wat honger is na nuwe hoop. Hierdie bediening is jy welkom, ongeag agtergrond, ouderdom of lewenservaring.
+                The Way Street Church is ’n unieke bediening wat saamkom om God se Woord en liefde na die mense te bring presies nét waar hulle is — óp die strate, ín die gemeenskap, en binne ín harte wat honger is na nuwe hoop. Hierdie bediening is jy welkom, ongeag agtergrond, ouderdom of lewenservaring.
               </p>
               <p>
                 Ons kom elke Vrydagaand 17h30 bymekaar by die poskantoor in Vanderhoffweg vir ’n tyd van gebed, woorde van bemoediging en deel van die Woord van God. Daar is ook kos en warmte vir liggaam en siel, en die bediening is ’n veilige ruimte waar mense hulself kan wees en die liefde van Jesus ervaar (Matthéüs 25:35-36).
