@@ -204,16 +204,19 @@ const addGlobalSong = async () => {
   const schedule = getSchedule();
   schedule.songs = schedule.songs || [];
 
-  // Remove undefined or empty values so Firebase is happy
-  const cleanSong = Object.fromEntries(
-    Object.entries(newSong).filter(([_, v]) => v !== undefined && v !== "")
-  );
+  // Type-safe song
+  const cleanSong: Song = {
+    title: newSong.title,
+    key: newSong.key,
+    capo: newSong.capo ?? undefined,
+    notes: newSong.notes?.trim() || undefined,
+  };
 
   schedule.songs.push(cleanSong);
 
   await set(ref(db, pathForSchedule(selectedDate)), schedule);
 
-  setNewSong({ title: "", key: "", capo: "", notes: "" });
+  setNewSong({ title: "", key: "", capo: undefined, notes: "" });
 };
 
 
