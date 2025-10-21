@@ -186,22 +186,35 @@ export default function BandManagerPage() {
     y += 20;
 
     schedule.sections.forEach((section, idx) => {
-      const acceptedMembers = (section.selectedMembers || []).filter(
-        id => section.confirmations?.[String(id)] === "accepted"
+      const sec = ensureSectionShape(section);
+      const acceptedMembers = members.filter(
+        m => m.roles.includes(sec.name) && sec.confirmations?.[String(m.id)] === "accepted"
       );
       if (!acceptedMembers.length) return;
+
       doc.setFontSize(12);
-      doc.text(`${idx + 1}. ${section.name}`, 40, y); y += 16;
+      doc.text(`${idx + 1}. ${sec.name} — ${acceptedMembers.length} accepted`, 40, y);
+      y += 16;
       doc.setFontSize(10);
-      doc.text(`Assigned: ${acceptedMembers.map(id => members.find(m => m.id === id)?.name || id).join(", ")}`, 60, y); y += 14;
-      if (section.notes) { doc.text(`Notes: ${section.notes}`, 60, y); y += 14; }
-      if (y > 720) { doc.addPage(); y = 40; }
+
+      acceptedMembers.forEach(m => {
+        doc.text(`- ${m.name}`, 60, y);
+        y += 14;
+        if (y > 720) { doc.addPage(); y = 40; }
+      });
+
+      if (sec.notes) {
+        doc.text(`Notes: ${sec.notes}`, 60, y);
+        y += 14;
+        if (y > 720) { doc.addPage(); y = 40; }
+      }
     });
 
     if (schedule.songs?.length) {
       y += 10;
       doc.setFontSize(12);
-      doc.text("Songs", 40, y); y += 16;
+      doc.text(`Songs — ${schedule.songs.length}`, 40, y);
+      y += 16;
       doc.setFontSize(10);
       schedule.songs.forEach(s => {
         doc.text(`- ${s.title} (Key: ${s.key}${s.capo ? `, Capo: ${s.capo}` : ""})${s.notes ? ` — ${s.notes}` : ""}`, 60, y);
@@ -220,34 +233,32 @@ export default function BandManagerPage() {
     setSelectedDate(d.toISOString().split("T")[0]);
   };
 
-  // ---------- Render ----------
   const schedule = getSchedule();
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 p-6">
-      <div className="max-w-6xl mx-auto">
-        <header className="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-6 gap-4">
+    <div className="min-h-screen bg-slate-50 text-slate-900 p-4 sm:p-6">
+      <div className="max-w-3xl mx-auto">
+        <header className="flex flex-col gap-4 mb-6">
           <div>
-            <h1 className="text-3xl font-bold">Church Band Manager — Services</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold">Church Band Manager — Services</h1>
             <p className="text-sm text-slate-600">Realtime scheduling, confirmations, and exports.</p>
           </div>
 
-          <div className="flex items-center gap-3">
-            <div className="text-sm flex flex-col">
-              <label>Date:</label>
-              <input type="date" value={selectedDate} onChange={(e) => setSelectedDate(e.target.value)} className="border rounded p-1" />
-              <button onClick={nextSunday} className="mt-1 px-2 py-1 bg-indigo-600 text-white rounded text-sm">Next Sunday</button>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+              <input type="date" value={selectedDate} onChange={(e) => setSelectedDate(e.target.value)} className="border rounded p-2 text-sm" />
+              <button onClick={nextSunday} className="px-4 py-2 bg-indigo-600 text-white rounded text-sm sm:text-base mt-1 sm:mt-0">Next Sunday</button>
             </div>
 
             {!isAdmin ? (
-              <div className="flex items-center gap-2">
-                <input type="password" placeholder="Admin password" value={adminPassword} onChange={(e) => setAdminPassword(e.target.value)} className="border p-1 rounded" />
-                <button onClick={enterAdmin} className="px-3 py-1 bg-indigo-600 text-white rounded">Admin</button>
+              <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+                <input type="password" placeholder="Admin password" value={adminPassword} onChange={(e) => setAdminPassword(e.target.value)} className="border p-2 rounded text-sm" />
+                <button onClick={enterAdmin} className="px-4 py-2 bg-indigo-600 text-white rounded text-sm sm:text-base">Admin</button>
               </div>
             ) : (
-              <div className="flex items-center gap-2">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-2">
                 <div className="text-sm font-medium text-green-700">Admin Mode</div>
-                <button onClick={() => { setIsAdmin(false); setAdminPassword(""); }} className="px-2 py-1 border rounded">Exit</button>
+                <button onClick={() => { setIsAdmin(false); setAdminPassword(""); }} className="px-3 py-1 border rounded text-sm sm:text-base">Exit</button>
               </div>
             )}
           </div>
@@ -255,74 +266,82 @@ export default function BandManagerPage() {
 
         {notice && <div className="mb-4 p-2 bg-yellow-100 border rounded text-sm">{notice}</div>}
 
-        <main className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Members */}
+        <main className="flex flex-col gap-6">
+          {/* Members Section */}
           <section className="bg-white p-4 rounded shadow">
             <h2 className="font-semibold mb-2">Members</h2>
 
             {isAdmin && (
-              <div className="mb-3 border p-2 rounded bg-gray-50">
-                <div className="font-medium text-sm mb-1">Add Member</div>
+              <div className="mb-3 border p-3 rounded bg-gray-50">
+                <div className="font-medium text-sm mb-2">Add Member</div>
                 <input
                   placeholder="Name"
-                  className="border p-1 w-full mb-1"
+                  className="border p-2 w-full mb-2 text-sm"
                   value={newMemberName}
                   onChange={(e) => setNewMemberName(e.target.value)}
                 />
                 <input
                   placeholder="Roles (comma separated)"
-                  className="border p-1 w-full mb-1"
+                  className="border p-2 w-full mb-2 text-sm"
                   value={newMemberRoles}
                   onChange={(e) => setNewMemberRoles(e.target.value)}
                 />
                 <button
                   onClick={addMember}
-                  className="px-3 py-1 bg-green-500 text-white rounded text-sm"
+                  className="px-4 py-2 bg-green-500 text-white rounded text-sm sm:text-base"
                 >
                   Add
                 </button>
               </div>
             )}
 
-            <ul className="max-h-60 overflow-auto space-y-2 mb-3">
+            <ul className="max-h-64 overflow-auto space-y-2 mb-3">
               {members.map(m => (
-                <li key={m.id} className="flex items-center justify-between border rounded p-2">
+                <li key={m.id} className="flex flex-col sm:flex-row justify-between items-start sm:items-center border rounded p-3">
                   <div>
                     <div className="font-medium">{m.name}</div>
-                    <div className="text-xs text-slate-400">Roles: {(m.roles || []).join(", ") || "—"}</div>
+                    <div className="text-xs sm:text-sm text-slate-400">Roles: {(m.roles || []).join(", ") || "—"}</div>
                   </div>
-                  <div className="flex flex-col items-end gap-1">
-                    {isAdmin && <button onClick={() => removeMember(m.id)} className="text-xs px-2 py-1 bg-red-100 text-red-700 rounded">Delete</button>}
-                  </div>
+                  {isAdmin && <button onClick={() => removeMember(m.id)} className="mt-2 sm:mt-0 px-3 py-1 bg-red-100 text-red-700 rounded text-sm sm:text-base">Delete</button>}
                 </li>
               ))}
             </ul>
           </section>
 
-          {/* Schedule */}
-          <section className="bg-white p-4 rounded shadow lg:col-span-2">
-            <div className="flex items-center justify-between mb-3">
+          {/* Schedule Section */}
+          <section className="bg-white p-4 rounded shadow">
+            <div className="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center mb-3 gap-2">
               <h2 className="font-semibold">Schedule — {selectedDate}</h2>
-              <div className="flex gap-2">
-                <button onClick={exportSchedulePDF} className="px-3 py-1 bg-slate-800 text-white rounded">Export PDF</button>
-              </div>
+              {isAdmin && (
+                <button onClick={exportSchedulePDF} className="px-4 py-2 bg-slate-800 text-white rounded text-sm sm:text-base">
+                  Export PDF
+                </button>
+              )}
             </div>
 
             {schedule.sections.map((section, idx) => {
               const sec = ensureSectionShape(section);
               const sectionMembers = members.filter(m => m.roles.includes(sec.name));
               if (!sectionMembers.length) return null;
+
               return (
                 <div key={sec.name} className="border rounded p-3 mb-3">
-                  <div className="flex justify-between items-center mb-2">
-                    <div><div className="font-medium">{sec.name}</div><div className="text-xs text-slate-500">{sec.notes}</div></div>
+                  <div className="flex flex-col sm:flex-row justify-between mb-2 gap-2">
+                    <div>
+                      <div className="font-medium">{sec.name}</div>
+                      <div className="text-xs sm:text-sm text-slate-500">{sec.notes}</div>
+                    </div>
                   </div>
-                  <textarea className="border p-1 w-full mb-2" placeholder="Section notes" value={sec.notes} onChange={(e) => updateSectionNotes(idx, e.target.value)} />
+                  <textarea className="border p-2 w-full mb-2 text-sm" placeholder="Section notes" value={sec.notes} onChange={(e) => updateSectionNotes(idx, e.target.value)} />
                   <div className="flex flex-wrap gap-2 mb-2">
                     {sectionMembers.map(m => {
                       const conf = sec.confirmations?.[String(m.id)] || "pending";
                       return (
-                        <button key={m.id} onClick={() => toggleConfirmation(idx, m.id)} className={`px-2 py-1 rounded text-sm ${conf === "accepted" ? "bg-green-500 text-white" : conf === "declined" ? "bg-red-500 text-white" : "bg-gray-100"}`}>
+                        <button
+                          key={m.id}
+                          onClick={() => toggleConfirmation(idx, m.id)}
+                          className={`px-4 py-2 rounded text-sm sm:text-base ${conf === "accepted" ? "bg-green-500 text-white" : conf === "declined" ? "bg-red-500 text-white" : "bg-gray-100"}`}
+                        >
                           {m.name} ({conf})
                         </button>
                       );
@@ -335,16 +354,16 @@ export default function BandManagerPage() {
             {/* Global songs */}
             <div className="border rounded p-3">
               <div className="font-medium mb-2">Songs</div>
-              <ul className="list-disc list-inside mb-2">
+              <ul className="list-disc list-inside mb-2 text-sm sm:text-base">
                 {schedule.songs?.map((s, i) => <li key={i}>{s.title} (Key: {s.key}{s.capo ? `, Capo: ${s.capo}` : ""}) {s.notes ? `— ${s.notes}` : ""}</li>)}
               </ul>
               {isAdmin && (
                 <div className="flex flex-wrap gap-2">
-                  <input placeholder="Title" className="border p-1 flex-1" value={newSong.title} onChange={e => setNewSong({ ...newSong, title: e.target.value })} />
-                  <input placeholder="Key" className="border p-1 w-20" value={newSong.key} onChange={e => setNewSong({ ...newSong, key: e.target.value })} />
-                  <input placeholder="Capo" type="number" className="border p-1 w-20" value={newSong.capo ?? ""} onChange={e => setNewSong({ ...newSong, capo: Number(e.target.value) })} />
-                  <input placeholder="Notes" className="border p-1 w-40" value={newSong.notes} onChange={e => setNewSong({ ...newSong, notes: e.target.value })} />
-                  <button onClick={addGlobalSong} className="px-3 py-1 bg-yellow-500 text-white rounded">Add Song</button>
+                  <input placeholder="Title" className="border p-2 flex-1 text-sm" value={newSong.title} onChange={e => setNewSong({ ...newSong, title: e.target.value })} />
+                  <input placeholder="Key" className="border p-2 w-20 text-sm" value={newSong.key} onChange={e => setNewSong({ ...newSong, key: e.target.value })} />
+                  <input placeholder="Capo" type="number" className="border p-2 w-20 text-sm" value={newSong.capo ?? ""} onChange={e => setNewSong({ ...newSong, capo: Number(e.target.value) })} />
+                  <input placeholder="Notes" className="border p-2 w-40 text-sm" value={newSong.notes} onChange={e => setNewSong({ ...newSong, notes: e.target.value })} />
+                  <button onClick={addGlobalSong} className="px-4 py-2 bg-yellow-500 text-white rounded text-sm sm:text-base">Add Song</button>
                 </div>
               )}
             </div>
