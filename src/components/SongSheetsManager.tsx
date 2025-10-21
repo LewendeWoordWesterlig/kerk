@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { db } from "@/firebase";
-import { ref, onValue, set } from "firebase/database";
+import { db, storage } from "@/firebase";
+import { ref as dbRef, onValue, set } from "firebase/database";
+import { ref as storageRef, uploadBytes, getDownloadURL } from "firebase/storage";
 
 // Browser-only jsPDF import
 let jsPDF: any;
@@ -39,7 +40,7 @@ export default function SongSheetsManager({
 
   // ---------- Load library ----------
   useEffect(() => {
-    const libRef = ref(db, "songLibrary");
+    const libRef = dbRef(db, "songLibrary");
     const off = onValue(libRef, (snap) => {
       const val = snap.val();
       const arr = val ? Object.values(val) as SongLibraryItem[] : [];
@@ -52,14 +53,16 @@ export default function SongSheetsManager({
   const addSongToLibrary = async () => {
     if (!newSongTitle || !newSongKey) return alert("Title and key required");
 
-    // Generate a simple unique id
     const id = Date.now();
-
     const pdfUrls: string[] = [];
+
     if (newPdfFiles) {
-      // We will just store file names for demo; replace with upload to storage if needed
       for (let i = 0; i < newPdfFiles.length; i++) {
-        pdfUrls.push(newPdfFiles[i].name);
+        const file = newPdfFiles[i];
+        const storageReference = storageRef(storage, `songLibrary/${Date.now()}-${file.name}`);
+        await uploadBytes(storageReference, file);
+        const url = await getDownloadURL(storageReference);
+        pdfUrls.push(url);
       }
     }
 
@@ -71,7 +74,7 @@ export default function SongSheetsManager({
       pdfUrls,
     };
 
-    await set(ref(db, `songLibrary/${id}`), newItem);
+    await set(dbRef(db, `songLibrary/${id}`), newItem);
     setNewSongTitle("");
     setNewSongKey("");
     setNewSongNote("");
@@ -102,7 +105,7 @@ export default function SongSheetsManager({
     );
   };
 
-  // ---------- Export selected PDFs for schedule ----------
+  // ---------- Export selected PDFs ----------
   const exportSelectedPdfs = () => {
     if (!jsPDF) return alert("PDF not available in SSR.");
     const doc = new jsPDF({ unit: "pt", format: "a4" });

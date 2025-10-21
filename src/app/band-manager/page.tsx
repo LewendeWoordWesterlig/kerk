@@ -58,7 +58,7 @@ const DEFAULT_ROLES = [
 const todaySunday = () => {
   const d = new Date();
   const day = d.getDay();
-  const diff = (8 - day) % 7; // days to next Sunday
+  const diff = (7 - day) % 7; // days to next Sunday
   d.setDate(d.getDate() + diff);
   return d.toISOString().split("T")[0];
 };
