@@ -11,7 +11,7 @@ const images = [
   "/images/Woordreisigers/woord R 2.jpg",
   "/images/Woordreisigers/woord R 3.jpg",
   "/images/Woordreisigers/woord R 4.jpg",
-  "/images/Woordreisigers/woord R 5.jpeg"
+  "/images/Woordreisigers/woord R 5.jpeg",
 ];
 
 export default function WoordReisigersSection() {
@@ -188,7 +188,7 @@ export default function WoordReisigersSection() {
 
           {/* WhatsApp Button */}
           <a
-            href="https://wa.me/27734133384?text=Goeie%20dag,Christah!%20Ek%20wil%20meer%20weet%20oor%20Woord%20Reisigers%20by%20Westerlig%20kerk."
+            href="https://wa.me/27734133384?text=Hello%Christah!%Ek%is%reg%om%my%Woord-reis%te%begin%—%vertel%my%asseblief%hoe%Woord%Reisigers%werk?."
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 bg-green-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-green-700 transition-all w-full"
