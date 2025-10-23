@@ -7,9 +7,11 @@ import { X } from "lucide-react";
 
 const images = [
   "/images/Woordreisigers/woord R 1.jpg",
+  "/images/Woordreisigers/woord R 6.jpg",
   "/images/Woordreisigers/woord R 2.jpg",
   "/images/Woordreisigers/woord R 3.jpg",
   "/images/Woordreisigers/woord R 4.jpg",
+  "/images/Woordreisigers/woord R 5.jpeg"
 ];
 
 export default function WoordReisigersSection() {

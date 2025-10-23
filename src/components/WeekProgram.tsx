@@ -14,8 +14,8 @@ export default function WeekProgram({ isOpen, onClose }: Props) {
     { day: "Maandag", time: "19:00", activity: "Woordskool" },
     { day: "Dinsdag", time: "", activity: "Geen program" },
     { day: "Woensdag", time: "", activity: "Selgroepe" },
-    { day: "Donderdag", time: "18:30", activity: "Orkes Oefening" },
-    { day: "Vrydag", time: "17:00", activity: "Uitreike" },
+    { day: "Donderdag", time: "08:30", activity: "Woord reisigers" },
+    { day: "Vrydag", time: "17:30", activity: "Uitreike" },
     { day: "Saterdag", time: "06:00", activity: "Bidgroep" },
     { day: "Sondag", time: "08:30 & 17:00", activity: "Dienste" },
   ];

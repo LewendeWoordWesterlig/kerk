@@ -179,7 +179,7 @@ Verwysing: Tiendes / Offergawes
       <Modal isOpen={activeModal === "gee"} onClose={() => setActiveModal(null)}>
         <h1 className="text-2xl font-bold mb-4">SAAI 🙏</h1>
         <p className="text-gray-700 mb-4">
-          Dankie dat jy ons bediening ondersteun! Jy kan gee deur EFT of SnapScan:
+          Dankie dat jy ons bediening ondersteun!
         </p>
 
         <div className="space-y-2 text-center">
@@ -199,12 +199,7 @@ Verwysing: Tiendes / Offergawes
         </button>
 
         <div className="mt-6 text-center">
-          <p className="font-semibold mb-2">Of gebruik SnapScan:</p>
-          <img
-            src="/snapscan.png"
-            alt="SnapScan QR"
-            className="w-40 mx-auto rounded-lg shadow"
-          />
+         
         </div>
       </Modal>
     </header>
