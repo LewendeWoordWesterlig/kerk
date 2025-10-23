@@ -188,7 +188,7 @@ export default function WoordReisigersSection() {
 
           {/* WhatsApp Button */}
           <a
-            href="https://wa.me/27734133384?text=Hello%Christah!%Ek%is%reg%om%my%Woord-reis%te%begin%—%vertel%my%asseblief%hoe%Woord%Reisigers%werk?."
+            href="https://wa.me/27734133384?text=Hello Christah! Ek is reg om my Woord-reis te begin — vertel my asseblief hoe Woord Reisigers werk?."
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 bg-green-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-green-700 transition-all w-full"
