@@ -78,11 +78,11 @@ Verwysing: Tiendes / Offergawes
 
         <button
           onClick={() => setActiveModal("gee")}
-          className="relative group"
-        >
-          SAAI
-          <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-yellow-400 transition-all duration-300 group-hover:w-full"></span>
-        </button>
+         className="relative group px-4 py-2 border-2 border-yellow-400 rounded-md hover:bg-yellow-400 hover:text-blue-900 transition-all duration-300"
+         >
+         SAAI
+         </button>
+
 
         <a
           href="https://www.google.com/maps/search/?api=1&query=631+Niemandt+Street,+Andeon+AH,+Pretoria"
@@ -146,7 +146,7 @@ Verwysing: Tiendes / Offergawes
               setActiveModal("gee");
               setMobileOpen(false);
             }}
-            className="text-lg font-semibold hover:text-yellow-400"
+            className="text-lg font-semibold border-2 border-yellow-400 px-4 py-2 rounded-md hover:bg-yellow-400 hover:text-blue-900 transition-all duration-300"
           >
             SAAI
           </button>
