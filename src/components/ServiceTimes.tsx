@@ -14,14 +14,16 @@ export default function ServiceTimes() {
         {/* Morning Service */}
         <div className="bg-white text-[#0D3B66] rounded-xl shadow-lg p-6 flex flex-col items-center hover:scale-105 transition-transform duration-300">
           <Clock className="w-10 h-10 text-[#C81D25] mb-4" />
-          <h3 className="text-xl font-bold">Sondag Oggend</h3>
+          <h3 className="text-xl font-bold">Oggenddiens</h3>
+          <h3 className="text-xl font-bold">Kinderkerk</h3>
+          <h3 className="text-xl font-bold">Tienerkerk</h3>
           <p className="text-lg text-gray-700 mt-2">08:30</p>
         </div>
 
         {/* Evening Service */}
         <div className="bg-white text-[#0D3B66] rounded-xl shadow-lg p-6 flex flex-col items-center hover:scale-105 transition-transform duration-300">
           <Clock className="w-10 h-10 text-[#C81D25] mb-4" />
-          <h3 className="text-xl font-bold">Sondag Aanddiens</h3>
+          <h3 className="text-xl font-bold">Aanddiens</h3>
           <p className="text-lg text-gray-700 mt-2">17:00</p>
         </div>
       </div>

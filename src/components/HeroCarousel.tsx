@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const slides = [
   {
-    image: "/Pastoor.jpg",
+    image: "/Pastoor2.jpg",
     text: "Welkom by Lewende Woord Westerlig",
   },
   {
