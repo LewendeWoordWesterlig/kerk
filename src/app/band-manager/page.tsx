@@ -198,27 +198,25 @@ export default function BandManagerPage() {
   };
 
   // ---------- Songs ----------
-const addGlobalSong = async () => {
-  if (!newSong.title || !newSong.key) return;
+  const addGlobalSong = async () => {
+    if (!newSong.title || !newSong.key) return;
 
-  const schedule = getSchedule();
-  schedule.songs = schedule.songs || [];
+    const schedule = getSchedule();
+    schedule.songs = schedule.songs || [];
 
-  // Type-safe song
-  const cleanSong: Song = {
-    title: newSong.title,
-    key: newSong.key,
-    capo: newSong.capo ?? undefined,
-    notes: newSong.notes?.trim() || undefined,
+    const cleanSong: Song = {
+      title: newSong.title,
+      key: newSong.key,
+      capo: newSong.capo ?? undefined,
+      notes: newSong.notes?.trim() || undefined,
+    };
+
+    schedule.songs.push(cleanSong);
+
+    await set(ref(db, pathForSchedule(selectedDate)), schedule);
+
+    setNewSong({ title: "", key: "", capo: undefined, notes: "" });
   };
-
-  schedule.songs.push(cleanSong);
-
-  await set(ref(db, pathForSchedule(selectedDate)), schedule);
-
-  setNewSong({ title: "", key: "", capo: undefined, notes: "" });
-};
-
 
   const removeSong = async (index: number) => {
     const schedule = getSchedule();
@@ -307,16 +305,34 @@ const addGlobalSong = async () => {
 
   const schedule = getSchedule();
 
+  // ---------- Dynamic Colors ----------
+  const theme =
+    serviceType === "morning"
+      ? {
+          bg: "bg-sky-50",
+          card: "bg-white",
+          accent: "bg-sky-600",
+          text: "text-slate-900",
+          buttonAlt: "bg-sky-800",
+        }
+      : {
+          bg: "bg-indigo-950",
+          card: "bg-indigo-900 text-indigo-100",
+          accent: "bg-violet-600",
+          text: "text-indigo-100",
+          buttonAlt: "bg-indigo-700",
+        };
+
   // ---------------- UI ----------------
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 p-4 sm:p-6">
+    <div className={`min-h-screen ${theme.bg} ${theme.text} p-4 sm:p-6 transition-all`}>
       <div className="max-w-3xl mx-auto">
         <header className="flex flex-col gap-4 mb-6">
           <div>
             <h1 className="text-2xl sm:text-3xl font-bold">
               Church Band Manager — {serviceType === "morning" ? "Morning" : "Evening"} Service
             </h1>
-            <p className="text-sm text-slate-600">
+            <p className="text-sm opacity-75">
               Realtime scheduling, confirmations, and exports.
             </p>
           </div>
@@ -327,11 +343,11 @@ const addGlobalSong = async () => {
                 type="date"
                 value={selectedDate}
                 onChange={(e) => setSelectedDate(e.target.value)}
-                className="border rounded p-2 text-sm"
+                className="border rounded p-2 text-sm text-slate-800"
               />
               <button
                 onClick={nextSunday}
-                className="px-4 py-2 bg-indigo-600 text-white rounded text-sm sm:text-base mt-1 sm:mt-0"
+                className={`px-4 py-2 ${theme.accent} text-white rounded text-sm sm:text-base mt-1 sm:mt-0`}
               >
                 Next Sunday
               </button>
@@ -342,7 +358,7 @@ const addGlobalSong = async () => {
                 onClick={() =>
                   setServiceType((prev) => (prev === "morning" ? "evening" : "morning"))
                 }
-                className="px-4 py-2 bg-slate-800 text-white rounded text-sm sm:text-base"
+                className={`px-4 py-2 ${theme.buttonAlt} text-white rounded text-sm sm:text-base`}
               >
                 Switch to {serviceType === "morning" ? "Evening" : "Morning"} Service
               </button>
@@ -354,18 +370,18 @@ const addGlobalSong = async () => {
                     placeholder="Admin password"
                     value={adminPassword}
                     onChange={(e) => setAdminPassword(e.target.value)}
-                    className="border p-2 rounded text-sm"
+                    className="border p-2 rounded text-sm text-slate-800"
                   />
                   <button
                     onClick={enterAdmin}
-                    className="px-4 py-2 bg-indigo-600 text-white rounded text-sm sm:text-base"
+                    className={`px-4 py-2 ${theme.accent} text-white rounded text-sm sm:text-base`}
                   >
                     Admin
                   </button>
                 </>
               ) : (
                 <div className="flex gap-2 items-center">
-                  <div className="text-sm font-medium text-green-700">Admin Mode</div>
+                  <div className="text-sm font-medium text-green-400">Admin Mode</div>
                   <button
                     onClick={() => {
                       setIsAdmin(false);
@@ -382,31 +398,33 @@ const addGlobalSong = async () => {
         </header>
 
         {notice && (
-          <div className="mb-4 p-2 bg-yellow-100 border rounded text-sm">{notice}</div>
+          <div className="mb-4 p-2 bg-yellow-100 border rounded text-sm text-slate-900">
+            {notice}
+          </div>
         )}
 
         <main className="flex flex-col gap-6">
           {/* Members Section */}
-          <section className="bg-white p-4 rounded shadow">
+          <section className={`${theme.card} p-4 rounded shadow`}>
             <h2 className="font-semibold mb-2">Members</h2>
             {isAdmin && (
-              <div className="mb-3 border p-3 rounded bg-gray-50">
+              <div className="mb-3 border p-3 rounded bg-opacity-10 bg-white">
                 <div className="font-medium text-sm mb-2">Add Member</div>
                 <input
                   placeholder="Name"
-                  className="border p-2 w-full mb-2 text-sm"
+                  className="border p-2 w-full mb-2 text-sm text-slate-800"
                   value={newMemberName}
                   onChange={(e) => setNewMemberName(e.target.value)}
                 />
                 <input
                   placeholder="Roles (comma separated)"
-                  className="border p-2 w-full mb-2 text-sm"
+                  className="border p-2 w-full mb-2 text-sm text-slate-800"
                   value={newMemberRoles}
                   onChange={(e) => setNewMemberRoles(e.target.value)}
                 />
                 <button
                   onClick={addMember}
-                  className="px-4 py-2 bg-green-500 text-white rounded text-sm sm:text-base"
+                  className={`px-4 py-2 bg-green-500 text-white rounded text-sm sm:text-base`}
                 >
                   Add
                 </button>
@@ -421,7 +439,7 @@ const addGlobalSong = async () => {
                 >
                   <div>
                     <div className="font-medium">{m.name}</div>
-                    <div className="text-xs sm:text-sm text-slate-400">
+                    <div className="text-xs sm:text-sm opacity-75">
                       Roles: {(m.roles || []).join(", ") || "—"}
                     </div>
                   </div>
@@ -439,7 +457,7 @@ const addGlobalSong = async () => {
           </section>
 
           {/* Schedule Section */}
-          <section className="bg-white p-4 rounded shadow">
+          <section className={`${theme.card} p-4 rounded shadow`}>
             <div className="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center mb-3 gap-2">
               <h2 className="font-semibold">
                 Schedule — {selectedDate} ({serviceType === "morning" ? "Morning" : "Evening"} Service)
@@ -447,7 +465,7 @@ const addGlobalSong = async () => {
               {isAdmin && (
                 <button
                   onClick={exportSchedulePDF}
-                  className="px-4 py-2 bg-slate-800 text-white rounded text-sm sm:text-base"
+                  className={`px-4 py-2 ${theme.buttonAlt} text-white rounded text-sm sm:text-base`}
                 >
                   Export PDF
                 </button>
@@ -466,11 +484,11 @@ const addGlobalSong = async () => {
                   <div className="flex flex-col sm:flex-row justify-between mb-2 gap-2">
                     <div>
                       <div className="font-medium">{sec.name}</div>
-                      <div className="text-xs sm:text-sm text-slate-500">{sec.notes}</div>
+                      <div className="text-xs sm:text-sm opacity-70">{sec.notes}</div>
                     </div>
                   </div>
                   <textarea
-                    className="border p-2 w-full mb-2 text-sm"
+                    className="border p-2 w-full mb-2 text-sm text-slate-800"
                     placeholder="Section notes"
                     value={sec.notes}
                     onChange={(e) => updateSectionNotes(idx, e.target.value)}
@@ -488,7 +506,7 @@ const addGlobalSong = async () => {
                               ? "bg-green-500 text-white"
                               : conf === "declined"
                               ? "bg-red-500 text-white"
-                              : "bg-gray-100"
+                              : "bg-gray-100 text-slate-800"
                           }`}
                         >
                           {m.name} ({conf})
@@ -514,7 +532,7 @@ const addGlobalSong = async () => {
                     {isAdmin && (
                       <button
                         onClick={() => removeSong(i)}
-                        className="ml-3 text-red-600 text-xs underline"
+                        className="ml-3 text-red-400 text-xs underline"
                       >
                         Remove
                       </button>
@@ -528,7 +546,7 @@ const addGlobalSong = async () => {
                   <div className="text-sm font-medium mb-2">Add Song</div>
                   <input
                     placeholder="Title"
-                    className="border p-2 w-full mb-2 text-sm"
+                    className="border p-2 w-full mb-2 text-sm text-slate-800"
                     value={newSong.title}
                     onChange={(e) =>
                       setNewSong({ ...newSong, title: e.target.value })
@@ -536,7 +554,7 @@ const addGlobalSong = async () => {
                   />
                   <input
                     placeholder="Key"
-                    className="border p-2 w-full mb-2 text-sm"
+                    className="border p-2 w-full mb-2 text-sm text-slate-800"
                     value={newSong.key}
                     onChange={(e) =>
                       setNewSong({ ...newSong, key: e.target.value })
@@ -544,7 +562,7 @@ const addGlobalSong = async () => {
                   />
                   <input
                     placeholder="Capo (optional)"
-                    className="border p-2 w-full mb-2 text-sm"
+                    className="border p-2 w-full mb-2 text-sm text-slate-800"
                     value={newSong.capo || ""}
                     onChange={(e) =>
                       setNewSong({
@@ -555,7 +573,7 @@ const addGlobalSong = async () => {
                   />
                   <input
                     placeholder="Notes (optional)"
-                    className="border p-2 w-full mb-2 text-sm"
+                    className="border p-2 w-full mb-2 text-sm text-slate-800"
                     value={newSong.notes || ""}
                     onChange={(e) =>
                       setNewSong({ ...newSong, notes: e.target.value })
