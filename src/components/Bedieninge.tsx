@@ -61,6 +61,12 @@ export default function Bedieninge({ isOpen, onClose, onOpenModal }: Props) {
       icon: LifeBuoy,
       action: { label: "Maak Afspraak", modal: "counseling" as const },
     },
+    {
+      title: "Sending",
+      description: "Uitreik na die buiteland",
+      icon: LifeBuoy,
+      link: "/bedieninge#bidgroep",
+    },
   ];
 
   const handleClick = (item: any) => {
