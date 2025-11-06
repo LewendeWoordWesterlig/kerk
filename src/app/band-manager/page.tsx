@@ -169,6 +169,10 @@ export default function BandManagerPage() {
     confs[String(memberId)] = next;
     schedule.sections[sectionIndex].confirmations = confs;
     await set(ref(db, pathForSchedule(selectedDate)), schedule);
+
+     // ✅ Show popup notice after update
+     setNotice(`Your confirmation has been ${next}.`);
+     setTimeout(() => setNotice(null), 3000);
   };
 
   const removeMember = async (memberId: number) => {
@@ -398,10 +402,13 @@ export default function BandManagerPage() {
         </header>
 
         {notice && (
-          <div className="mb-4 p-2 bg-yellow-100 border rounded text-sm text-slate-900">
-            {notice}
-          </div>
-        )}
+        <div
+        className="fixed top-6 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-fade-in"
+       >
+        {notice}
+       </div>
+       )}
+
 
         <main className="flex flex-col gap-6">
           {/* Members Section */}
