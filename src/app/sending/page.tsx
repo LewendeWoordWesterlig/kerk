@@ -9,7 +9,8 @@ export default function Home() {
     <div className="flex flex-col min-h-screen bg-[#F8F9FA]">
       
       {/* Navbar */}
-      <Navbar />
+      <Navbar onOpenModal={() => {}} />
+
 
       {/* ----------- YOUR NEW COMPONENTS GO HERE ----------- */}
       <main className="flex-1 px-6 py-16">
