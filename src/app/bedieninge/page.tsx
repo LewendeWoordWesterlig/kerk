@@ -11,6 +11,7 @@ import WoordReisigersSection from "@/components/bedieningecomp/WoordReisigersSec
 import UitreikeSection from "@/components/bedieningecomp/UitreikeSection";
 import BidgroepSection from "@/components/bedieningecomp/BidgroepSection";
 import OndersteuningSection from "@/components/bedieningecomp/OndersteuningSection";
+import SendingSection1 from "@/components/bedieningecomp/SendingSection1"
 
 export default function BedieningePage() {
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -73,6 +74,11 @@ export default function BedieningePage() {
       <section id="ondersteuning">
         <OndersteuningSection />
       </section>
+
+      <section id="sending">
+        <SendingSection1 />
+      </section>
+      
 
       {/* Spacing at end */}
       <div className="h-20"></div>

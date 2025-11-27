@@ -24,7 +24,7 @@ export default function InfoWithGallerySection() {
       {/* Header + Paragraph */}
       <div className="max-w-4xl mx-auto text-center md:text-left mb-12">
         <h2 className="text-3xl font-bold text-yellow-800 mb-6">
-          Sending
+          Sending na Zambia
         </h2>
 
         <p className="text-gray-800 leading-relaxed text-lg whitespace-pre-line">
@@ -96,18 +96,18 @@ export default function InfoWithGallerySection() {
       {/* Buttons */}
       <div className="flex flex-col sm:flex-row gap-6 justify-center mt-8">
         <a
-          href="https://wa.me/27829908159"
+          href="https://wa.me/27829908159?text=Goeiedag%20Herman!%20Ek%20wil%20graag%20meer%20uitvind%20oor%20die%20sending%20by%20Westerlig%20kerk🙏."
           target="_blank"
           className="bg-green-600 text-white px-8 py-4 rounded-xl shadow-lg hover:bg-green-700 transition-all text-lg font-semibold"
         >
-          WhatsApp Ons
+          Stuur Whatsapp
         </a>
 
         <a
           href="tel:27829908159"
           className="bg-yellow-600 text-white px-8 py-4 rounded-xl shadow-lg hover:bg-yellow-700 transition-all text-lg font-semibold"
         >
-          Bel My
+          Kontak Ons
         </a>
       </div>
     </section>
