@@ -65,7 +65,7 @@ export default function Bedieninge({ isOpen, onClose, onOpenModal }: Props) {
       title: "Sending",
       description: "Uitreik na die buiteland",
       icon: LifeBuoy,
-      link: "/bedieninge#bidgroep",
+      link: "/sending",
     },
   ];
 
