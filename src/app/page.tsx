@@ -41,7 +41,7 @@ export default function Home() {
             <div className="absolute inset-0 bg-gradient-to-t from-[#0D3B66]/70 to-transparent group-hover:from-[#0D3B66]/50 transition"></div>
             <div className="relative z-10 flex items-center justify-center h-full">
               <h3 className="text-2xl font-extrabold text-yellow-400 drop-shadow-lg tracking-wide">
-                Week Program
+                Weeklikse Program
               </h3>
             </div>
           </button>

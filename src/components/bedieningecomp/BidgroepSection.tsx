@@ -54,7 +54,7 @@ export default function BidgroepSection() {
               ✕
             </button>
             <h3 className="text-2xl font-bold text-blue-900 mb-4 text-center">
-              🙏 Bidgroepe
+              🙏 Bidgroep
             </h3>
             <div className="text-gray-700 leading-relaxed space-y-4 text-justify">
               <p>
@@ -97,7 +97,7 @@ export default function BidgroepSection() {
               📞 Brits Van Zyl
             </h3>
             <p className="text-gray-700 mb-4">
-              Kontak ons Bedieningsleier vir meer inligting oor Bidgroepe.
+              Kontak ons Bedieningsleier vir meer inligting oor die Bidgroep.
             </p>
             <div className="space-y-2">
               <p className="font-semibold text-blue-900">📱 061 511 2292</p>
