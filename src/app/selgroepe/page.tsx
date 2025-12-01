@@ -64,6 +64,16 @@ const groups: Group[] = [
     whatsappNumber: "27615112292",
     membersList: ["Brits & Madelein Van Zyl"],
   },
+    {
+    id: 6,
+    name: "Kameeldrift-West",
+    locationName: "Kameeldrift-West",
+    mapUrl:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3487.000000000!2d27.991684!3d-25.7118424!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ebfd43c36b7ba1b%3A0xdd38717ca9e6ce61!2sKameeldrift%20West!5e0!3m2!1sen!2sza!4v0000000000",
+    imageUrl: "/images/Selgroep/Juvan Stiemie Sel.jpg",
+    whatsappNumber: "",
+    membersList: ["Juvan Stimie"],
+  },
 ];
 
 export default function SelgroepePage() {
