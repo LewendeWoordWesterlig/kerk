@@ -95,15 +95,26 @@ export default function SelgroepePage() {
               className="bg-white shadow-lg rounded-xl overflow-hidden flex flex-col transform transition duration-300 hover:scale-105 hover:shadow-2xl"
             >
               {/* Selgroep Image with Gradient Overlay */}
-              <div className="relative h-72 w-full overflow-hidden">
-                <Image
-                  src={group.imageUrl}
-                  alt={group.name}
-                  fill
-                  className="object-cover object-[60%_0%] transition-transform duration-300 hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-              </div>
+            {/* Selgroep Image with Blurred Background */}
+<div className="relative w-full h-60 sm:h-72 lg:h-80 overflow-hidden">
+
+  {/* Blurred background fill */}
+  <Image
+    src={group.imageUrl}
+    alt={group.name + ' blurred backdrop'}
+    fill
+    className="object-cover blur-xl scale-110 opacity-50"
+  />
+
+  {/* Actual image (always fits, never crops) */}
+  <Image
+    src={group.imageUrl}
+    alt={group.name}
+    fill
+    priority
+    className="object-contain relative z-10"
+  />
+</div>
 
               {/* Info Section */}
               <div className="p-6 flex flex-col flex-1 relative">
