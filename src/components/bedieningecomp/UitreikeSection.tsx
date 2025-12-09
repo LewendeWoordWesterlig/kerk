@@ -11,6 +11,8 @@ const images = [
   "/images/Uitreik/uitreike4.jpg",
   "/images/Uitreik/uitreike5.jpg",
   "/images/Uitreik/uitreike6.jpg",
+  "/images/Uitreik/uitreike7.jpg",
+  "/images/Uitreik/uitreike8.jpg",
 ];
 
 export default function UitreikeSection() {
