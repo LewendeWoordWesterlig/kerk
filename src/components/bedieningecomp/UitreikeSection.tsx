@@ -183,19 +183,19 @@ export default function UitreikeSection() {
               </blockquote>
 
               <div className="mt-6 text-center space-y-2">
-                <p className="font-semibold text-blue-900">📞 Geo Fowlds</p>
-                <p className="text-gray-700">082 453 0867</p>
+                <p className="font-semibold text-blue-900">📞 Madeleine Fowlds</p>
+                <p className="text-gray-700">082 658 6354</p>
               </div>
 
               <div className="flex flex-col gap-3 mt-6 text-center">
                 <a
-                  href="tel:+27824530867"
+                  href="tel:+27825686354"
                   className="inline-block bg-yellow-400 text-blue-900 font-semibold px-6 py-2 rounded-full shadow hover:bg-yellow-300 transition"
                 >
                   Skakel Nou
                 </a>
                 <a
-                  href="https://wa.me/27824530867?text=Goeie%20dag%20Geo!%20Ek%20wil%20meer%20uitvind%20oor%20die%20Westerlig%20Uitreikbediening.%20🙏"
+                  href="https://wa.me/27825686354?text=Goeie%20dag%20Geo!%20Ek%20wil%20meer%20uitvind%20oor%20die%20Westerlig%20Uitreikbediening.%20🙏"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block bg-green-500 text-white font-semibold px-6 py-2 rounded-full shadow hover:bg-green-600 transition"
