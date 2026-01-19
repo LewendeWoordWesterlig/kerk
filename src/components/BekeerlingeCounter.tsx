@@ -5,17 +5,28 @@ import confetti from "canvas-confetti";
 import { motion } from "framer-motion";
 
 export default function BekeerlingeCounter() {
-  const souls = 467; // 👈 update manually
+  const souls = 76;
   const [showCelebration, setShowCelebration] = useState(false);
   const [showFloating, setShowFloating] = useState(false);
+  const [displayCount, setDisplayCount] = useState(0);
 
   useEffect(() => {
-    // Show big celebration after 10s
     const timer = setTimeout(() => {
       fireConfetti();
       setShowCelebration(true);
 
-      // Then shrink and dock to bottom after 3s
+      // COUNT UP
+      let current = 0;
+      const increment = Math.ceil(souls / 60);
+      const counter = setInterval(() => {
+        current += increment;
+        if (current >= souls) {
+          current = souls;
+          clearInterval(counter);
+        }
+        setDisplayCount(current);
+      }, 25);
+
       setTimeout(() => {
         setShowCelebration(false);
         setShowFloating(true);
@@ -23,7 +34,7 @@ export default function BekeerlingeCounter() {
     }, 5000);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [souls]);
 
   const fireConfetti = () => {
     confetti({
@@ -41,17 +52,22 @@ export default function BekeerlingeCounter() {
         <motion.div
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1.2, opacity: 1 }}
-          exit={{ scale: 0, opacity: 0 }}
           transition={{ duration: 0.5 }}
           className="fixed inset-0 z-50 flex items-center justify-center p-4"
         >
-          <div className="relative bg-yellow-400 text-blue-900 font-extrabold px-6 py-4 rounded-2xl shadow-2xl border-4 border-white text-2xl sm:text-3xl md:text-4xl text-center overflow-hidden">
-            {/* Watermark */}
-            <span className="absolute inset-0 flex items-center justify-center text-blue-900/10 font-extrabold text-[70px] sm:text-[100px] md:text-[130px] leading-none select-none scale-90">
-              2025
-            </span>
-            {/* Foreground Text */}
-            <span className="relative z-10">BEKEERLINGE: {souls}</span>
+          <div className="bg-yellow-400 text-blue-900 px-10 py-6 rounded-2xl shadow-2xl border-4 border-white text-center">
+            <div className="text-lg sm:text-xl md:text-2xl font-extrabold tracking-widest uppercase mb-2">
+              BEKEERLINGE 2026
+            </div>
+
+            {/* COUNT WITH PULSE */}
+            <motion.div
+              animate={{ scale: [1, 1.05, 1] }}
+              transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+              className="text-5xl sm:text-6xl md:text-7xl font-black tracking-tight"
+            >
+              {displayCount}
+            </motion.div>
           </div>
         </motion.div>
       )}
@@ -59,12 +75,18 @@ export default function BekeerlingeCounter() {
       {/* Small Floating Counter */}
       {showFloating && (
         <div className="fixed bottom-4 right-4 left-4 md:left-auto md:right-6 z-50 flex justify-center md:justify-end">
-          <div className="relative bg-yellow-400 text-blue-900 font-extrabold px-3 py-2 rounded-lg shadow-md text-sm sm:text-base md:text-lg border border-white overflow-hidden">
-            {/* Watermark for small block */}
-            <span className="absolute inset-0 flex items-center justify-center text-blue-900/10 font-extrabold text-[40px] sm:text-[60px] md:text-[80px] leading-none select-none scale-90">
-              2025
-            </span>
-            <span className="relative z-10">BEKEERLINGE: {souls}</span>
+          <div className="bg-yellow-400 text-blue-900 px-4 py-3 rounded-lg shadow-md border border-white text-center">
+            <div className="text-xs font-bold tracking-widest uppercase">
+              BEKEERLINGE 2026
+            </div>
+
+            <motion.div
+              animate={{ scale: [1, 1.04, 1] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              className="text-lg sm:text-xl font-black"
+            >
+              {displayCount}
+            </motion.div>
           </div>
         </div>
       )}
