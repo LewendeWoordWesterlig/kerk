@@ -5,7 +5,7 @@ import confetti from "canvas-confetti";
 import { motion } from "framer-motion";
 
 export default function BekeerlingeCounter() {
-  const souls = 76;
+  const souls =90;
   const [showCelebration, setShowCelebration] = useState(false);
   const [showFloating, setShowFloating] = useState(false);
   const [displayCount, setDisplayCount] = useState(0);
@@ -57,7 +57,7 @@ export default function BekeerlingeCounter() {
         >
           <div className="bg-yellow-400 text-blue-900 px-10 py-6 rounded-2xl shadow-2xl border-4 border-white text-center">
             <div className="text-lg sm:text-xl md:text-2xl font-extrabold tracking-widest uppercase mb-2">
-              BEKEERLINGE 2026
+             BEKEERLINGE VIR 2026 ALREEDS
             </div>
 
             {/* COUNT WITH PULSE */}
@@ -77,7 +77,7 @@ export default function BekeerlingeCounter() {
         <div className="fixed bottom-4 right-4 left-4 md:left-auto md:right-6 z-50 flex justify-center md:justify-end">
           <div className="bg-yellow-400 text-blue-900 px-4 py-3 rounded-lg shadow-md border border-white text-center">
             <div className="text-xs font-bold tracking-widest uppercase">
-              BEKEERLINGE 2026
+              BEKEERLINGE VIR 2026 ALREEDS
             </div>
 
             <motion.div
