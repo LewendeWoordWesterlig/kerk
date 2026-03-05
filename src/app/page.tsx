@@ -9,7 +9,8 @@ import WeekProgram from "@/components/WeekProgram";
 import Bedieninge from "@/components/Bedieninge";
 import AfspraakForm from "@/components/AfspraakForm";
 import Modal from "@/components/Modal";
-import YouTubeSection from "@/components/YoutubeSection"; // 👈 added import
+import YouTubeSection from "@/components/YoutubeSection";
+import AdvertisementCarousel from "@/components/AdvertisementCarousel"; // 👈 added import
 
 export default function Home() {
   const [openModal, setOpenModal] = useState<"week" | "services" | "counseling" | null>(null);
@@ -65,6 +66,9 @@ export default function Home() {
           </button>
         </section>
       </div>
+
+      {/* Advertisement Gallery Section 👇 */}
+      <AdvertisementCarousel />
 
       {/* 👇 New YouTube Section */}
       <section className="mt-16">
