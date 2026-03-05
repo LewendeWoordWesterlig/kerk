@@ -64,8 +64,8 @@ const groups: Group[] = [
     whatsappNumber: "27615112292",
     membersList: ["Brits & Madelein Van Zyl"],
   },
-    {
-    id: 6,
+  {
+    id: 7,
     name: "Kameeldrift-West",
     locationName: "Kameeldrift-West",
     mapUrl:
@@ -74,17 +74,39 @@ const groups: Group[] = [
     whatsappNumber: "",
     membersList: ["Juvan Stimie"],
   },
+
+  /* NEW SELGROEP 1 */
+  {
+    id: 8,
+    name: "Andeon",
+    locationName: "Lewende Woord Westerlig",
+    mapUrl:
+      "https://www.google.com/maps?q=Andeon%20Pretoria%20South%20Africa&output=embed",
+    imageUrl: "/images/Woordreisigers/woord R 6.jpg",
+    whatsappNumber: "27734133384",
+    membersList: ["Christah Lessing"],
+  },
+
+  /* NEW SELGROEP 2 */
+  {
+    id: 9,
+    name: "Wonderboom",
+    locationName: "",
+    mapUrl:
+      "https://www.google.com/maps?q=Wonderboom%20Pretoria&output=embed",
+    imageUrl: "/images/Selgroep/Tuine.jpg",
+    whatsappNumber: "27829908159",
+    membersList: ["Herman Pretorius"],
+  },
 ];
 
 export default function SelgroepePage() {
   return (
     <>
-      {/* Navbar stays on top */}
       <div className="sticky top-0 z-50">
         <Navbar onOpenModal={() => null} />
       </div>
 
-      {/* Page content */}
       <main className="px-4 py-10 max-w-7xl mx-auto mt-4">
         <h1 className="text-4xl font-bold text-center mb-12">Ons Selgroepe</h1>
 
@@ -94,42 +116,39 @@ export default function SelgroepePage() {
               key={group.id}
               className="bg-white shadow-lg rounded-xl overflow-hidden flex flex-col transform transition duration-300 hover:scale-105 hover:shadow-2xl"
             >
-              {/* Selgroep Image with Gradient Overlay */}
-            {/* Selgroep Image with Blurred Background */}
-<div className="relative w-full h-60 sm:h-72 lg:h-80 overflow-hidden">
+              <div className="relative w-full h-60 sm:h-72 lg:h-80 overflow-hidden">
 
-  {/* Blurred background fill */}
-  <Image
-    src={group.imageUrl}
-    alt={group.name + ' blurred backdrop'}
-    fill
-    className="object-cover blur-xl scale-110 opacity-50"
-  />
+                <Image
+                  src={group.imageUrl}
+                  alt={group.name + " blurred backdrop"}
+                  fill
+                  className="object-cover blur-xl scale-110 opacity-50"
+                />
 
-  {/* Actual image (always fits, never crops) */}
-  <Image
-    src={group.imageUrl}
-    alt={group.name}
-    fill
-    priority
-    className="object-contain relative z-10"
-  />
-</div>
+                <Image
+                  src={group.imageUrl}
+                  alt={group.name}
+                  fill
+                  priority
+                  className="object-contain relative z-10"
+                />
+              </div>
 
-              {/* Info Section */}
               <div className="p-6 flex flex-col flex-1 relative">
-                <h2 className="text-2xl font-semibold text-gray-800 mb-2">{group.name}</h2>
+                <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+                  {group.name}
+                </h2>
 
-                {/* Members */}
                 <ul className="text-gray-700 text-lg mb-3 list-disc list-inside space-y-1 pl-4">
                   {group.membersList.map((member, index) => (
                     <li key={index}>{member}</li>
                   ))}
                 </ul>
 
-                <p className="text-gray-600 mb-4">Ligging: {group.locationName}</p>
+                <p className="text-gray-600 mb-4">
+                  Ligging: {group.locationName}
+                </p>
 
-                {/* Google Maps Embed */}
                 <div className="mb-4 w-full h-48 rounded-md overflow-hidden shadow-sm">
                   <iframe
                     src={group.mapUrl}
@@ -142,7 +161,6 @@ export default function SelgroepePage() {
                   ></iframe>
                 </div>
 
-                {/* Buttons */}
                 <div className="mt-auto flex flex-col sm:flex-row gap-3">
                   <a
                     href={`https://wa.me/${group.whatsappNumber}?text=Ons%20wil%20graag%20aansluit%20by%20U%20selgroep`}
@@ -152,6 +170,7 @@ export default function SelgroepePage() {
                   >
                     WhatsApp Me
                   </a>
+
                   <a
                     href="#contact"
                     className="flex-1 bg-blue-500 text-white py-3 px-4 rounded-lg text-center text-lg font-medium hover:bg-blue-600 transition"
