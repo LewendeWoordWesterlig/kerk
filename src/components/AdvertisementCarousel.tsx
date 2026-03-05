@@ -16,9 +16,23 @@ const ads: Ad[] = [
   {
     id: 1,
     image: "/images/ads1/Mannekamp.jpg",
-    title: "ManneKamp",
+    title: "Mannekamp",
     description: "Skryf in vir die volgende Mannekamp",
     link: "https://forms.gle/E69DnYsLTR7QrY6L7",
+  },
+   {
+    id: 2,
+    image: "/images/ads1/manneoggend.jpg",
+    title: "Manne-oggend",
+    description: "Kontak gerus vir Brits en boek jou plek vir die Manne-oggend !",
+    // no link
+  },
+  {
+    id: 3,
+    image: "/images/ads1/biblebash.jpeg",
+    title: "Bible BASH",
+    description: "Kontak gerus vir Mike en boek jou plek vir die Bible BASH!",
+    // no link
   },
 ];
 
